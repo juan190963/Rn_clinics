@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="resources/css/Style1.css" rel="stylesheet" type="text/css"/>
+
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="title">Registre Empleado</div>
+            <f:view>
+                <h:form>
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details" value="idEmpleados" for="idEmpleados">Inserte Documento</span>
+                            <h:inputText id="idEmpleados" value="#{controllerEmpleado.empleados.idEmpleados}" title="IdEmpleados" required="true" requiredMessage="The IdEmpleados field is required."/>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details" value="nombresApellidos" for="nombresApellidos">Inserte Nombres y Apellidos</span>
+                            <h:inputText id="nombresApellidos" value="#{controllerEmpleado.empleados.nombresApellidos}" title="NombresApellidos" required="true" requiredMessage="The NombresApellidos field is required."/>    
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details" value="cargo" for="cargo">Inserte cargo</span>
+                            <h:inputText id="cargo" value="#{controllerEmpleado.empleados.cargo}" title="Cargo" required="true" requiredMessage="The Cargo field is required."/>
+                        </div>
+                        
+                        <div class="input-box">
+                            <span class="details" value="salario" for="salario">Inserte salario</span>
+                            <h:inputText id="salario" value="#{controllerEmpleado.empleados.salario}" title="salario" required="true" requiredMessage="The Cargo field is required."/>
+                        </div>
+
+
+                        <div class="input-box">
+                            
+                            <span class="details" value="Celular" for="celular">Inserte celular</span>
+                            <h:inputText id="celular" value="#{controllerEmpleado.empleados.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
+                        </div> 
+                        
+                        
+                        
+                             <div class="button">
+                                 <br> 
+                                     <h:commandButton type="submit" action="#{controllerEmpleado.insertar()}" value="Registrar"/>
+                                 </br>
+                                 <br>
+                                     <h:commandButton  type="submit" action="empleado.xhtml" value="Volver"/>
+                                 </br>
+                    </div>
+                        
+                        
+                        
+                    </div>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+
+
+
+
+

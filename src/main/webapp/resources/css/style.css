@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playpen+Sans&family=Poppins:wght@300;400;700&family=Roboto+Slab:wght@300;400&family=Young+Serif&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family:Playpen Sans;
+}
+
+section{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url(https://static.vecteezy.com/system/resources/previews/008/277/960/non_2x/of-panoramic-background-landscape-with-shadows-of-mountains-and-pine-forests-the-lake-is-in-the-forest-and-mountains-free-vector.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}

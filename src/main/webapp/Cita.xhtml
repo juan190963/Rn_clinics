@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="resources/css/estiloCrud.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script> 
+        <script src="https://kit.fontawesome.com/451bdf13cc.js" crossorigin="anonymous"></script>
+    </h:head>
+    <h:body>
+        <script >
+            $(document).ready(function () {
+                $('#t-all').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });</script>
+        <header class="header" id="inicio">
+            <img src="resources/img/hamburguesa.svg" alt="" class="hamburger" />
+            <nav class="menu-navegacion ">
+                <a href="inicio.xhtml">Inicio</a>
+                <a href="empleados.xhtml">Empleados</a>
+                <a href="factura.xhtml">Facturacion</a>
+                <a href="Cita.xhtml">Cita</a>
+                <a href="solicite.xhtml">Solicite cita</a>
+                <a href="login.xhtml" >Volver</a>
+
+
+            </nav>
+            <h:link outcome="empleados.xhtml" value="Empleados" rendered="#{session.getAttribute('Cargo')=='Administrador'}"/>
+            <h:link outcome="cita.xhtml" value="Citas" rendered="#{session.getAttribute('Cargo')=='Asesor'}"/>
+            <h:link outcome="factura.xhtml" value="Facturación" rendered="#{session.getAttribute('Cargo')=='Asesor'}"/>
+            <h:link outcome="solicite.xhtml" value="Solicite cita" rendered="#{session.getAttribute('Cargo')=='Usuario'}"/>
+        </header>
+
+        <main>
+            <h:form > 
+                <h1 class="titulo">Cita</h1>
+                <h2><h:outputLabel value="#{session.getAttribute('usuario')}"/></h2>
+                <table class="table table-dark table-striped" id="t-all" style="width: 100%" border="1">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID_CITA</th>
+                            <th scope="col">ID_USUARIO</th>
+                            <th scope="col">NOMBRE Y APELLIDO</th>
+                            <th scope="col">FECHA_CITA</th>
+                            <th scope="col">SERVICIO</th>  
+                            <th scope="col">ACCIONES</th>                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{controllerCita.listar()}" var="Citas">
+                            <tr>
+                                <th>#{Citas.idCita}</th>
+                                <td>#{Citas.idUsuario}</td>
+                                <td>#{Citas.nombresApellidos}</td>
+                                <td>#{Citas.fechaCita}</td>
+                                <td>#{Citas.servicio}</td>
+                                <div class="button">
+                                    <td><br/><h:commandButton  action="#{controllerCita.editar(citas)}" value="Editar" /><h:commandButton  action="#{controllerCita.eliminar(Citas)}" value="Eliminar" onclick="return confirm('Esta seguro de eliminarlo?')"/></td>
+                                    
+                                </div>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <div class="button">
+                    <h:commandButton type="submit" action="addCitas.xhtml" value="Registrar"/>
+                </div>
+            </h:form>   
+        </main> 
+
+    </h:body>
+    <script src="resources/js/menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</html>
+
